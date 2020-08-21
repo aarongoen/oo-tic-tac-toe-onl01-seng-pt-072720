@@ -69,10 +69,10 @@ class TicTacToe
   
   def current_player
     while @board.turn_count > 0 
-    
-    
-    else "O"
+    @board.turn_count do |turn|
+      turn 
     end
-  end 
-end 
+  end
+   
+ 
 end 
