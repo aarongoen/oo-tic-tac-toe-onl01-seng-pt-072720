@@ -87,6 +87,10 @@ class TicTacToe
     won? || draw?
   end 
   
+  def winner
+    @board last turn
+    token 
+  end 
   
 end
   
