@@ -41,38 +41,45 @@ class TicTacToe
     end 
   end 
     
-  def valid_move?(i)
-    (i).between?(0,8) && !self.position_taken?(i) 
+  def valid_move?(index)
+    index.between?(0,8) && !position_taken?(index) 
   end
   
-  def turn(input)
-    puts "Where would you like to play?"
-    input = gets.chomp
-    index = self.input_to_index(input)
-    if valid_move?(index) == true 
-      move(index, current_player)
+  def turn
+    puts "Where would you like to play (position 1-9)?"
+    input = gets
+    index = input_to_index(input)
+    if valid_move?(index) 
+      token = current_player
+      move(index, token)
       display_board
     else
-      until valid_move?(index) do
-        puts "Sorry, that's an invalid move; Try again."
-        input = gets.chomp
-        index = self.input_to_index(input)
-      end 
-      move(valid?, current_player)
-      display_board
+      puts "Sorry, that's an invalid move; Try again."
+      turn
     end 
   end
   
   def turn_count
     @board.count {|spot| spot != " "}
   end 
-  
+   
   def current_player
-    while @board.turn_count > 0 
-    @board.turn_count do |turn|
-      turn 
+    turn_count.even? ? "X" : "O"
+  end
+
+  def won?
+    WIN_COMBINATIONS.any? do |combo|
+      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+        return combo
+      end
     end
   end
-   
- 
-end 
+  
+  def full?
+    @board.all? {|spot| spot != " "}
+    end 
+  end 
+  
+  def draw?
+    full? && !won? 
+  end
