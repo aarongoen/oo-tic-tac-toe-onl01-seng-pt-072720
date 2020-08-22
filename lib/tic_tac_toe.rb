@@ -89,7 +89,7 @@ class TicTacToe
   
   def winner
     if winning_combo = WIN_COMBINATIONS.any? == won?
-      @board.winning_combo[0] 
+      @board.current_player
     end
   end 
   
