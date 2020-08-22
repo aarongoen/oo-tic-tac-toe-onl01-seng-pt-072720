@@ -104,6 +104,7 @@ class TicTacToe
     elsif draw?
       puts "This game ended in a draw."
     end 
+  end 
   
 end
   
