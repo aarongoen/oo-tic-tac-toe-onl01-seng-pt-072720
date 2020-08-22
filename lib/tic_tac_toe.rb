@@ -88,8 +88,8 @@ class TicTacToe
   end 
   
   def winner
-    @board last turn
-    token 
+    if combo == won?
+      @board[combo[0]]
   end 
   
 end
