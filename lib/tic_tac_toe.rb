@@ -94,6 +94,16 @@ class TicTacToe
     end
   end 
   
+  def play
+    until over?
+      turn
+    end 
+  
+    if won?
+      puts "Congratulations! You won!"
+    elsif draw?
+      puts "This game ended in a draw."
+    end 
   
 end
   
